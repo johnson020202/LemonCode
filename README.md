@@ -1,4 +1,4 @@
-# LCode 满血版
+# LCode 
 
 <div align="center">
   <img src="public/logo/icons/1024x1024.png" alt="LCode" width="128" height="128" />
@@ -14,13 +14,11 @@
 
 ---
 
-## 为什么需要满血版？
-
 LCode 官方开源版本缺少了一项重要功能：**Git 仓库自动备份**。
 
 我们认为，一个优秀的 AI 编程工作台应该具备代码资产保护能力。意外丢失代码是每个开发者的噩梦——磁盘故障、误操作 `git reset --hard`、甚至 AI 误删文件，都可能造成不可挽回的损失。
 
-LCode 满血版补齐了这个缺失的功能。你的 `.git` 仓库可自动备份到**你自己的**阿里云 OSS 或 MinIO 存储桶，也可同时备份到两者；使用非对称加密保护，密钥完全由你持有。
+LCode 补齐了这个缺失的功能。你的 `.git` 仓库可自动备份到**你自己的**阿里云 OSS 或 MinIO 存储桶，也可同时备份到两者；使用非对称加密保护，密钥完全由你持有。
 
 ## Git 自动备份
 
@@ -39,7 +37,7 @@ LCode 满血版补齐了这个缺失的功能。你的 `.git` 仓库可自动备
 
 ### 我们的设计原则
 
-| 设计原则             | LCode 满血版                                                               |
+| 设计原则             | LCode                                                                |
 | -------------------- | -------------------------------------------------------------------------- |
 | 备份前主动告知用户   | **是**，首次启动明确询问，需要用户主动确认开启                             |
 | 用户持有全部加密密钥 | **是**，RSA 密钥对在备份所属 Host 生成，私钥不随备份上传，仅由用户主动导出 |
@@ -49,7 +47,7 @@ LCode 满血版补齐了这个缺失的功能。你的 `.git` 仓库可自动备
 
 ### 如何使用
 
-1. 启动 LCode 满血版，首次运行时会弹出引导对话框
+1. 启动 LCode ，首次运行时会弹出引导对话框
 2. 选择“开启自动备份”，直接进入 **设置 → 数据与统计 → Git 自动备份**；弹框不填写配置，也不会提前开启自动备份
 3. 在设置中打开“阿里云 OSS”或“MinIO”页签并保存配置，当前工作区会加入备份列表。OSS 填写 AccessKey ID / Secret、已有 bucket 和 region（如 `oss-cn-hangzhou`）；保存本身不启用自动调度
 4. 也可以选择"暂不开启"，随时在 **设置 → 数据与统计 → Git 自动备份** 中配置；请导出并妥善保管私钥
@@ -57,7 +55,7 @@ LCode 满血版补齐了这个缺失的功能。你的 `.git` 仓库可自动备
 6. MinIO 填写 S3 API 地址（例如 `https://minio.example.com:9000`，不是控制台地址）、AccessKey ID / Secret、已有 bucket 和 region（默认 `us-east-1`）。支持 HTTP，但建议 HTTPS；请求从所属 Host 发出，沿用其代理和自定义证书
 7. 手动操作可只备份当前存储，也可备份到所有已启用目的地；总自动开关关闭时仍可手动执行。旧 OSS 配置会保留原开关、凭据、工作区和调度时间，MinIO 默认关闭
 
-> 如果你不需要这个功能，跳过即可。满血版不会做任何你不知道的事情。
+> 如果你不需要这个功能，跳过即可。不会做任何你不知道的事情。
 
 ---
 
@@ -140,9 +138,9 @@ pnpm bootstrap
 | `packages/server`                  | HTTP / WebSocket 服务与远程连接                                 |
 | `packages/ui`                      | 共享 React 组件、hooks 与 Zustand 状态                          |
 | `packages/services`                | 业务服务与持久化                                                |
-| `packages/services/src/git-backup` | **Git 自动备份服务（满血版新增）**                              |
-| `packages/lcode-cua`               | **自研 Computer Use 运行时（满血版新增）**                      |
-| `cfworker-remote/`                 | **手机远程控制 Cloudflare Worker 隧道（满血版新增，独立仓库）** |
+| `packages/services/src/git-backup` | **Git 自动备份服务（新增）**                              |
+| `packages/lcode-cua`               | **自研 Computer Use 运行时（新增）**                      |
+| `cfworker-remote/`                 | **手机远程控制 Cloudflare Worker 隧道（新增，独立仓库）** |
 | `packages/shared`                  | 共享协议和类型                                                  |
 | `apps/lcode-cli`                   | Agent CLI、TUI、运行时与工具                                    |
 
